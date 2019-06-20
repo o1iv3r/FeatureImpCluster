@@ -1,0 +1,90 @@
+---
+title: "Vignette Title"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+```{r}
+#### data with categorical variables ####
+
+ds <- as.data.table(data)
+
+n <- dim(ds)[1]
+p <- dim(ds)[2]
+
+set.seed(123)
+ds[,cat1:=factor(rbinom(n,size=1,prob=0.3),labels = c("yes","no"))]
+
+# correlate with x or y
+# ds[,cat2:=factor(ifelse(x*rnorm(10000,me,1)>.5,"yes","no"))]
+
+# this factor is relevant
+ds[,cat2:=factor(c(rep("yes",5000),rep("no",5000)))]
+
+# and strongly correlated to x -> will we see that they share importance? 
+cor(ds$x,as.numeric(ds$cat2),method="spearman")
+ggplot(ds,aes(x=x,fill=cat2)) + geom_density(alpha=.3)
+# ggplot(ds,aes(x=y,fill=cat2)) + geom_density(alpha=.3)
+
+
+ggplot(ds,aes(x=x,y=y)) + geom_point(alpha=.3) + facet_grid(~cat2)
+ggplot(ds,aes(x=x,y=y)) + geom_point(alpha=.3) + facet_grid(~cat1)
+
+
+#### clustMixType ####
+
+library(clustMixType)
+
+## use default lambda
+set.seed(7) # bad seed
+set.seed(8) # good seed
+res <- kproto(x=ds,k=4) # ,lambda=1
+# Estimated lambda ~ 2
+
+FeatureImp_res <- FeatureImpCluster(res,ds,sub = .5,biter = 5)
+# plot(FeatureImp_res,color="type") # to debug
+plot(FeatureImp_res)
+# relevance of x and cat2 roughly the relevance of y
+
+data2plot <- copy(ds)
+data2plot$cluster <- as.factor(res$cluster)
+ggplot(data2plot,aes(x=x,y=y,color=cluster)) + geom_point(alpha=.3) + facet_grid(~cat2)
+
+
+## try other lambda
+# smaller lambda -> cat2 is irrelevant
+set.seed(8) # good seed not working if lambda is too small
+res <- kproto(x=ds,k=4,lambda=1)
+plot(FeatureImpCluster(res,ds,sub = .5,biter = 5))
+data2plot$cluster <- as.factor(res$cluster)
+ggplot(data2plot,aes(x=x,y=y,color=cluster)) + geom_point(alpha=.3) + facet_grid(~cat2)
+
+
+
+# higher lambda -> cat1 and cat2 are the most relevant variables is the most relevant variable
+set.seed(8) # good seed not working if lambda is too large
+res <- kproto(x=ds,k=4,lambda=4)
+plot(FeatureImpCluster(res,ds,sub = .5,biter = 5))
+data2plot$cluster <- as.factor(res$cluster)
+# cat2 and x share importance:
+ggplot(data2plot,aes(x=x,y=y,color=cluster)) + geom_point(alpha=.3) + facet_grid(~cat2)
+# cat1 and x are used:
+ggplot(data2plot,aes(x=x,y=y,color=cluster)) + geom_point(alpha=.3) + facet_grid(~cat1)
+
+#### Using Gower?
+library(daisy)
+```
+

@@ -1,0 +1,21 @@
+Package: FeatureImpCluster
+Title: Feature importance for partitional clustering
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Oliver",
+           family = "Pfaffel",
+           role = c("aut", "cre"),
+           email = "opfaffel@posteo.net")
+Description: What the package does (one paragraph).
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    flexclust,
+    clustMixType,
+    knitr,
+    rmarkdown
+Imports: 
+    data.table,
+    ggplot2
+VignetteBuilder: knitr
