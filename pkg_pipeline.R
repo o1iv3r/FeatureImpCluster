@@ -29,7 +29,7 @@ use_spell_check() # requires spelling package
 #  check into git, then go to settings for your repo and make sure that the GitHub pages source is set to “master branch /docs folder”. Be sure to update the URL on your github repository homepage so others can easily navigate to your new site.
 
 ## github
-use_git() # git remote add origin https://github.com/o1iv3r/ClustImpute.git
+use_git() # git remote add origin https://github.com/o1iv3r/FeatureImpCluster.git
 # use_github()
 
 ## If article or other reference exists
