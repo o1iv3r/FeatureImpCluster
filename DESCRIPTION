@@ -14,8 +14,12 @@ Suggests:
     flexclust,
     clustMixType,
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat,
+    attempt
 Imports: 
-    data.table,
     ggplot2
 VignetteBuilder: knitr
+RoxygenNote: 6.1.1
+Depends: 
+    data.table

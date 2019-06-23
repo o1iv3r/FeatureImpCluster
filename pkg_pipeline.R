@@ -7,13 +7,15 @@ use_gpl3_license(name = "Oliver Pfaffel") # required to share improvements
 
 use_package("flexclust", "Suggests")
 use_package("clustMixType", "Suggests")
-use_package("data.table", "Imports")
+use_package("attempt", "Suggests")
+use_package("data.table", "Depends")
 use_package("ggplot2", "Imports")
 # use_pipe() # Use %>%
 
 ### create R files
 use_r("FeatureImpCluster")
 use_r("PermMisClassRate")
+use_r("Create_random_data")
 
 ### documentation
 use_news_md()
@@ -34,6 +36,10 @@ use_git() # git remote add origin https://github.com/o1iv3r/FeatureImpCluster.gi
 
 ## If article or other reference exists
 # use_citation()
+
+## tests # https://testthat.r-lib.org/
+use_test("PermMisClassRate")
+use_coverage() # Add-in test coverage
 
 
 #### Deployment ####

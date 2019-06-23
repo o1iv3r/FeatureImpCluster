@@ -118,3 +118,5 @@ flexclust::as.kcca(cl, data=x) # cl is a kmeans object
 flexclust::predict(cl2,newdata=x)
 ```
 
+
+

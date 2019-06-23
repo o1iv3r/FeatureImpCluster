@@ -26,7 +26,7 @@ FeatureImpCluster.kcca <- function(clusterObj,data,basePred=NULL,sub=1,biter=10)
   return(result)
 }
 
-# Feature Importance for own approach
+# Feature Importance for clustMixType
 FeatureImpCluster.kproto <- function(clusterObj,data,basePred=NULL,sub=1,biter=10) {
 
   # prediction function for own approach
