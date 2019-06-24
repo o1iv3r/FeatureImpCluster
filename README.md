@@ -12,16 +12,3 @@ You can install the package with with:
 ``` r
 devtools::install_github("o1iv3r/FeatureImpCluster")
 ```
-
-## Examples
-
-See vignettes.
-
-
-## Useage with kmeans via flexclust
-
-``` r
-# cl is a kmeans object
-cl2 = flexclust::as.kcca(cl, data=x) 
-flexclust::predict(cl2,newdata=x)
-```
