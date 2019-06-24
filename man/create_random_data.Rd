@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_random_data.R
 \name{create_random_data}
 \alias{create_random_data}
-\title{Create random data set with 4 clusters in a 2 dimensional subspace of a nr_othter_vars+2 dimensional space}
+\title{Create random data set with 4 clusters}
 \usage{
 create_random_data(n = 10000, nr_other_vars = 4)
 }
@@ -18,6 +18,6 @@ list containing the random data.table and a vector with the true underlying clus
 Create random data set with 4 clusters in a 2 dimensional subspace of a nr_othter_vars+2 dimensional space
 }
 \examples{
-reate_random_data(n=1e3)
+create_random_data(n=1e3)
 
 }

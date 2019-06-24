@@ -12,5 +12,3 @@ You can install the package with with:
 ``` r
 devtools::install_github("o1iv3r/FeatureImpCluster")
 ```
-
-See the vignettes for examples.

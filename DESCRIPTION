@@ -16,7 +16,8 @@ Suggests:
     knitr,
     rmarkdown,
     testthat,
-    attempt
+    attempt,
+    ClustImpute
 Imports: 
     ggplot2
 VignetteBuilder: knitr

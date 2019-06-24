@@ -12,7 +12,8 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  eval = FALSE
 )
 ```
 
@@ -27,6 +28,7 @@ plot(FeatureImp_kcca,data=as.data.table(cluster_MM_scaled),color="type")
 
 ```
 
+There now is a function for this
 
 ```{r}
 ### Artificial Cluster Dataset ####
@@ -90,6 +92,8 @@ ggplot(data2plot,aes(x=x,y=V3,color=cluster)) + geom_point()
 
 
 #### average over seed ####
+
+# Goal: variable selection
 
 set.seed(123)
 nr_seeds <- 10
