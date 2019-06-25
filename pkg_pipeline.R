@@ -53,12 +53,14 @@ use_coverage() # Add-in test coverage
 devtools::document()
 devtools::check(document = FALSE)
 
-## Commit changes
-# terminal: git commit -m "Commit message"
-# or commit button in Rstudio
 
 ## Increment version
 use_version() #  increments the "Version" field in DESCRIPTION, adds a new heading to NEWS.md (if it exists), and commits those changes (if package uses Git).
+
+
+## Commit changes
+# terminal: git commit -m "Commit message"
+# or commit button in Rstudio
 
 ## Push to github
 # terminal: git push -u origin master
