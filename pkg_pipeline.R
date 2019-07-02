@@ -21,8 +21,8 @@ use_r("Create_random_data")
 
 ### documentation
 use_news_md()
-use_readme_md()
-use_vignette("Usage-with-flexclust")
+use_readme_rmd()
+use_vignette("Feature-selection")
 use_vignette("Usage-with-clustMixType")
 use_vignette("Usage-with-ClustImpute")
 use_spell_check() # requires spelling package
@@ -53,14 +53,12 @@ use_coverage() # Add-in test coverage
 devtools::document()
 devtools::check(document = FALSE)
 
-
-## Increment version
-use_version() #  increments the "Version" field in DESCRIPTION, adds a new heading to NEWS.md (if it exists), and commits those changes (if package uses Git).
-
-
 ## Commit changes
 # terminal: git commit -m "Commit message"
 # or commit button in Rstudio
+
+## Increment version
+use_version() #  increments the "Version" field in DESCRIPTION, adds a new heading to NEWS.md (if it exists), and commits those changes (if package uses Git).
 
 ## Push to github
 # terminal: git push -u origin master
