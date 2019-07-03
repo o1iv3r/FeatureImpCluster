@@ -42,22 +42,24 @@ a 6 dimensional space
 ``` r
 library(FeatureImpCluster)
 #> Loading required package: data.table
+
+set.seed(7)
 dat <- create_random_data(n=4000,nr_other_vars = 4)
 summary(dat$data)
-#>        V1                  V2                 V3          
-#>  Min.   :-3.503537   Min.   :-4.25505   Min.   :-3.69946  
-#>  1st Qu.:-0.678525   1st Qu.:-0.67117   1st Qu.:-0.67973  
-#>  Median : 0.000047   Median : 0.00745   Median : 0.01825  
-#>  Mean   : 0.000000   Mean   : 0.00000   Mean   : 0.00000  
-#>  3rd Qu.: 0.668155   3rd Qu.: 0.66007   3rd Qu.: 0.67338  
-#>  Max.   : 3.283141   Max.   : 3.72633   Max.   : 3.62204  
-#>        V4                 x                  y           
-#>  Min.   :-3.74953   Min.   :-2.33650   Min.   :-2.20839  
-#>  1st Qu.:-0.67451   1st Qu.:-0.93308   1st Qu.:-0.93919  
-#>  Median : 0.01666   Median : 0.02645   Median :-0.02859  
-#>  Mean   : 0.00000   Mean   : 0.00000   Mean   : 0.00000  
-#>  3rd Qu.: 0.69444   3rd Qu.: 0.92371   3rd Qu.: 0.93294  
-#>  Max.   : 3.65882   Max.   : 2.16919   Max.   : 2.14545
+#>        V1                  V2                  V3           
+#>  Min.   :-3.531648   Min.   :-3.578032   Min.   :-3.924400  
+#>  1st Qu.:-0.670694   1st Qu.:-0.676281   1st Qu.:-0.662992  
+#>  Median :-0.001917   Median :-0.001944   Median :-0.002742  
+#>  Mean   : 0.000000   Mean   : 0.000000   Mean   : 0.000000  
+#>  3rd Qu.: 0.654912   3rd Qu.: 0.658228   3rd Qu.: 0.678405  
+#>  Max.   : 3.501554   Max.   : 3.717284   Max.   : 3.065434  
+#>        V4                 x                   y           
+#>  Min.   :-3.91009   Min.   :-2.255326   Min.   :-2.04657  
+#>  1st Qu.:-0.67427   1st Qu.:-0.934193   1st Qu.:-0.92633  
+#>  Median : 0.01396   Median :-0.004383   Median : 0.04418  
+#>  Mean   : 0.00000   Mean   : 0.000000   Mean   : 0.00000  
+#>  3rd Qu.: 0.67657   3rd Qu.: 0.927500   3rd Qu.: 0.92785  
+#>  Max.   : 3.58167   Max.   : 2.095888   Max.   : 2.18437
 ```
 
 ``` r
@@ -86,7 +88,7 @@ library(flexclust)
 #> Loading required package: lattice
 #> Loading required package: modeltools
 #> Loading required package: stats4
-set.seed(123)
+set.seed(10)
 res <- kcca(dat$data,k=4)
 FeatureImp_res <- FeatureImpCluster(res,as.data.table(dat$data))
 plot(FeatureImp_res)
@@ -94,10 +96,10 @@ plot(FeatureImp_res)
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
-Indeed, y and x are most relevant. But also V4 and V1 have some impact
-on the cluster assignment. By looking at the cluster centers, we see
-that, in particular, cluster 2 and 4 have a different center in the V4
-and V1 dimension than the other
+Indeed, y and x are most relevant. But also V2 has some impact on the
+cluster assignment. By looking at the cluster centers we see that, in
+particular, cluster 2 and 3 have a different center in the V2 dimension
+than the other
 clusters.
 
 ``` r
@@ -113,22 +115,24 @@ barplot(res)
 If we had a lot more than 6 variables (and possibly more clusters), then
 the chart above might be hard to interpret. The feature importance plot
 instead provides an aggregate statistics per feature and is, as such,
-always easy to interpret.
+always easy to interpret, in particular since only the top x (say, 10 or
+30) features can be considered to get a first impression.
 
 ## Feature selection
 
 We know that the clustering is impacted by the random initialization.
 Thus it is usually recommended to run the clustering alogrithm several
 times with different seeds. As a by-product, the feature importance will
-provide us a feature selection mechanism: we can take the median over
-the importance of a feature over various iterations so that any spurious
-importance is correctly identified as outlier.
+provide us a feature selection mechanism: instead of iterating over
+permutation, we can iterate over the different cluster runs (or both).
+This way there is a good chance that any spurious importance is
+identified as an outlier.
 
-For our example we calculate the feature importance 5 times before
-taking the median:
+For our example we repeat the clustering + feature importance
+calculation 5 times:
 
 ``` r
-set.seed(123)
+set.seed(12)
 nr_seeds <- 5
 seeds_vec <- sample(1:1000,nr_seeds)
 
@@ -137,25 +141,21 @@ count <- 1
 for (s in seeds_vec) {
   set.seed(s)
   res <- kcca(dat$data,k=4)
-  FeatureImp_res <- FeatureImpCluster(res,as.data.table(dat$data),sub = 1,biter = 10)
+  FeatureImp_res <- FeatureImpCluster(res,as.data.table(dat$data),sub = 1,biter = 1)
   savedImp[count,] <- FeatureImp_res$featureImp[sort(names(FeatureImp_res$featureImp))]
   count <- count + 1
 }
 names(savedImp) <- sort(names(FeatureImp_res$featureImp))
-median_importance <- sapply(savedImp,median)
 ```
 
 Now it becomes quite obvious that x and y are the only relevant
 features, and we could do our clustering only based on these features.
 This is importantant in practice since cluster centroids with a lower
 number of features are easier to interpret, and we can save time / money
-collecting and pre-processing unnecessary
-features.
+collecting and pre-processing unnecessary features.
 
 ``` r
-data2plot <- data.frame(Feature=names(median_importance),Importance=median_importance)
-ggplot(data2plot,aes(x=Feature,y=sort(Importance,decreasing = F))) + geom_col() + 
-  coord_flip() + ylab("Median feature importance") + theme_light()
+boxplot(savedImp)
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
@@ -189,7 +189,7 @@ Obviously x and cat2 are strongly correlated.
 
 ``` r
 cor(ds$x,as.numeric(ds$cat2),method="spearman")
-#> [1] 0.8657435
+#> [1] 0.8655712
 ```
 
 First we’ll apply the clustering with an automatic estimation of

@@ -33,7 +33,7 @@ FeatureImpCluster <- function(clusterObj,data,basePred=NULL,predFUN=NULL,sub=1,b
   # Init
   vars <- names(data)
   len <- length(vars)
-  misClassRate_all <- data.table(matrix(0,biter,len))
+  misClassRate_all <- data.table::data.table(matrix(0,biter,len))
   names(misClassRate_all) <- vars
 
   # loop over PermMisClassRate and collect results in data table

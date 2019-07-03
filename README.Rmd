@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Feature importance in k-means clustering
+# Feature importance in k-means clustering 
 
 We present a novel approach for measuring feature importance in k-means clustering, or variants thereof, to increase the interpretability of clustering results. In supervised machine learning, feature importance is a widely used tool to ensure interpretability of complex models. We adapt this idea to unsupervised learning via partitional clustering. Our approach is model agnostic in that it only requires a function that computes the cluster assignment for new data points. 
 
@@ -36,6 +36,8 @@ We'll create some random data to illustrate the usage of FeatureImpCluster. It p
 
 ```{r}
 library(FeatureImpCluster)
+
+set.seed(7)
 dat <- create_random_data(n=4000,nr_other_vars = 4)
 summary(dat$data)
 ```
@@ -52,31 +54,31 @@ If our clustering works well, x and y should determine the partition while the o
 ```{r}
 library(FeatureImpCluster)
 library(flexclust)
-set.seed(123)
+set.seed(10)
 res <- kcca(dat$data,k=4)
 FeatureImp_res <- FeatureImpCluster(res,as.data.table(dat$data))
 plot(FeatureImp_res)
 ```
 
-Indeed, y and x are most relevant. But also V4 and V1 have some impact on the cluster assignment. By looking at the cluster centers, we see that, in particular, cluster 2 and 4 have a different center in the V4 and V1 dimension than the other clusters.
+Indeed, y and x are most relevant. But also V2 has some impact on the cluster assignment. By looking at the cluster centers we see that, in particular, cluster 2 and 3 have a different center in the V2 dimension than the other clusters.
 
 ```{r}
 barplot(res)
 # bwplot(res,dat$data), image(res,which=5:6) # alternative diagnostic plots of flexclust
 ```
 
-If we had a lot more than 6 variables (and possibly more clusters), then the chart above might be hard to interpret. The feature importance plot instead provides an aggregate statistics per feature and is, as such, always easy to interpret.
+If we had a lot more than 6 variables (and possibly more clusters), then the chart above might be hard to interpret. The feature importance plot instead provides an aggregate statistics per feature and is, as such, always easy to interpret, in particular since only the top x (say, 10 or 30) features can be considered to get a first impression.
 
 
 ## Feature selection
 
-We know that the clustering is impacted by the random initialization. Thus it is usually recommended to run the clustering alogrithm several times with different seeds. As a by-product, the feature importance will provide us a feature selection mechanism: we can take the median over the importance of a feature over various iterations so that any spurious importance is correctly identified as outlier.
+We know that the clustering is impacted by the random initialization. Thus it is usually recommended to run the clustering alogrithm several times with different seeds. As a by-product, the feature importance will provide us a feature selection mechanism: instead of iterating over permutation, we can iterate over the different cluster runs (or both). This way there is a good chance that any spurious importance is identified as an outlier.
 
-For our example we calculate the feature importance 5 times before taking the median:
+For our example we repeat the clustering + feature importance calculation 5 times:
 
 
 ```{r}
-set.seed(123)
+set.seed(12)
 nr_seeds <- 5
 seeds_vec <- sample(1:1000,nr_seeds)
 
@@ -85,20 +87,17 @@ count <- 1
 for (s in seeds_vec) {
   set.seed(s)
   res <- kcca(dat$data,k=4)
-  FeatureImp_res <- FeatureImpCluster(res,as.data.table(dat$data),sub = 1,biter = 10)
+  FeatureImp_res <- FeatureImpCluster(res,as.data.table(dat$data),sub = 1,biter = 1)
   savedImp[count,] <- FeatureImp_res$featureImp[sort(names(FeatureImp_res$featureImp))]
   count <- count + 1
 }
 names(savedImp) <- sort(names(FeatureImp_res$featureImp))
-median_importance <- sapply(savedImp,median)
 ```
 
 Now it becomes quite obvious that x and y are the only relevant features, and we could do our clustering only based on these features. This is importantant in practice since cluster centroids with a lower number of features are easier to interpret, and we can save time / money collecting and pre-processing unnecessary features.
 
 ```{r}
-data2plot <- data.frame(Feature=names(median_importance),Importance=median_importance)
-ggplot(data2plot,aes(x=Feature,y=sort(Importance,decreasing = F))) + geom_col() + 
-  coord_flip() + ylab("Median feature importance") + theme_light()
+boxplot(savedImp)
 ```
 
 
