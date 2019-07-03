@@ -1,13 +1,14 @@
 #' Feature importance for k-means clustering
 #'
-#' This function loops through PermMisClassRate for each variable of the data.
+#' This function loops through \code{\link{PermMisClassRate}} for each variable of the data.
 #' The mean misclassification rate over all iterations is interpreted as variable importance.
 #'
 #' @param clusterObj a "typical" cluster object. The only requirement is that there must be a prediction function which maps the data
 #' to an integer
 #' @param data data.table with the same features as the data set used for clustering (or the simply the same data)
 #' @param basePred should be equal to results of predFUN(clusterObj,newdata=data); this option saves time when data is a very large data set
-#' @param predFUN predFUN(clusterObj,newdata=data); typically a wrapper around a build-in prediction function
+#' @param predFUN predFUN(clusterObj,newdata=data) should provide the cluster assignment as a numeric vector;
+#' typically this is a wrapper around a build-in prediction function
 #' @param sub integer between 0 and 1(=default), indicates that only a subset of the data should be used if <1
 #' @param biter the permutation is iterated biter(=5, default) times
 #'
@@ -32,7 +33,7 @@ FeatureImpCluster <- function(clusterObj,data,basePred=NULL,predFUN=NULL,sub=1,b
   # Init
   vars <- names(data)
   len <- length(vars)
-  misClassRate_all <- data.table(matrix(0,biter,len))
+  misClassRate_all <- data.table::data.table(matrix(0,biter,len))
   names(misClassRate_all) <- vars
 
   # loop over PermMisClassRate and collect results in data table
@@ -57,6 +58,7 @@ FeatureImpCluster <- function(clusterObj,data,basePred=NULL,predFUN=NULL,sub=1,b
 #' @param color If set to "type", the plot will show different variable types with a different color.
 #' @param showPoints Show points (default is False)
 #'
+#' @rdname plot
 #' @export
 plot.featImpCluster <- function(featImpClusterObj,dat=NULL,color="none",showPoints=FALSE) {
   # Create boxplot

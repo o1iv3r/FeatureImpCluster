@@ -8,7 +8,8 @@
 #' @param data data.table with the same features as the data set used for clustering (or the simply the same data)
 #' @param varName character; variable name
 #' @param basePred should be equal to results of predFUN(clusterObj,newdata=data); this option saves time when data is a very large data set
-#' @param predFUN predFUN(clusterObj,newdata=data); typically a wrapper around a build-in prediction function
+#' @param predFUN predFUN(clusterObj,newdata=data) should provide the cluster assignment as a numeric vector;
+#' typically this is a wrapper around a build-in prediction function
 #' @param sub integer between 0 and 1(=default), indicates that only a subset of the data should be used if <1
 #' @param biter the permutation is iterated biter(=5, default) times
 #' @param seed value for random seed
@@ -36,10 +37,10 @@ PermMisClassRate <- function(clusterObj,data,varName,basePred=NULL,predFUN=NULL,
       predict(obj,newdata)$`cluster`
     }
   } else if (inherits(clusterObj,"kmeans_ClustImpute")) {
-    predFUN <- ClustImpute::predict.kmeans_ClustImpute
+    predFUN <- ClustImpute:::predict.kmeans_ClustImpute
   } else attempt::stop_if(is.null(predFUN),"Provide prediction function")
 
-  n <- nrow(data) # number of rows od data
+  n <- nrow(data) # number of rows of data
 
   # baseline: cluster before permutation
   if (is.null(basePred)) {

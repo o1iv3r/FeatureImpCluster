@@ -15,7 +15,8 @@ to an integer}
 
 \item{basePred}{should be equal to results of predFUN(clusterObj,newdata=data); this option saves time when data is a very large data set}
 
-\item{predFUN}{predFUN(clusterObj,newdata=data); typically a wrapper around a build-in prediction function}
+\item{predFUN}{predFUN(clusterObj,newdata=data) should provide the cluster assignment as a numeric vector;
+typically this is a wrapper around a build-in prediction function}
 
 \item{sub}{integer between 0 and 1(=default), indicates that only a subset of the data should be used if <1}
 
@@ -29,7 +30,7 @@ A list of
 }
 }
 \description{
-This function loops through PermMisClassRate for each variable of the data.
+This function loops through \code{\link{PermMisClassRate}} for each variable of the data.
 The mean misclassification rate over all iterations is interpreted as variable importance.
 }
 \examples{
