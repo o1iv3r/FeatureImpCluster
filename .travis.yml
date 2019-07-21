@@ -6,7 +6,11 @@ cache: packages
 before_install:
   - sudo apt-get install libgsl0-dev libgsl0ldbl
 
+r:
+  - release
+
 r_github_packages:
+  - r-lib/covr
   - cran/gsl
   - o1iv3r/ClustImpute
 
