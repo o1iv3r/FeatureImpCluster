@@ -3,6 +3,9 @@
 language: R
 cache: packages
 
+before_install:
+  - sudo apt-get install libgsl0-dev libgsl0ldbl
+
 r_github_packages:
   - cran/gsl
   - o1iv3r/ClustImpute
