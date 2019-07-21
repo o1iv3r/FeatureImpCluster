@@ -4,3 +4,7 @@
 ^LICENSE\.md$
 ^FeatureImpCluster\.Rproj$
 ^\.Rproj\.user$
+^pkg_pipeline\.R$
+^\.travis\.yml$
+^travis\.yml$
+^codecov\.yml$

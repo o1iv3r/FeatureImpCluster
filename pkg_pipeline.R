@@ -45,6 +45,7 @@ use_test("PermMisClassRate")
 use_test("FeatureImpCluster")
 use_coverage() # Add-in test coverage
 
+use_build_ignore(c("pkg_pipeline.R"))
 
 #### Deployment ####
 
@@ -71,3 +72,12 @@ use_version() #  increments the "Version" field in DESCRIPTION, adds a new headi
 ## Release package to CRAN
 # devtools::release()
 # devtools::submit_cran()
+
+#### CI ####
+
+use_travis()
+use_build_ignore("travis.yml")
+
+use_coverage()
+use_build_ignore("codecov.yml")
+

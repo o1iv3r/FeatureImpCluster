@@ -4,6 +4,12 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+<!-- badges: start -->
+[![Travis build status](https://travis-ci.org/o1iv3r/FeatureImpCluster.svg?branch=master)](https://travis-ci.org/o1iv3r/FeatureImpCluster)
+[![Codecov test coverage](https://codecov.io/gh/o1iv3r/FeatureImpCluster/branch/master/graph/badge.svg)](https://codecov.io/gh/o1iv3r/FeatureImpCluster?branch=master)
+<!-- badges: end -->
+
+
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -168,7 +174,7 @@ FeatureImpCluster(res_clustimpute,as.data.table(dat$data))
 
 For other methods, a custom prediction function can be provided (cf. documentation for details)
 
-```{r}
+```{r eval=FALSE}
 FeatureImpCluster(clusterObj, data, predFUN = custom_prediction_function_for_clusterObj)
 ```
 
