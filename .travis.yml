@@ -4,8 +4,8 @@ language: R
 cache: packages
 
 r_github_packages:
-  - o1iv3r/ClustImpute
   - cran/gsl
+  - o1iv3r/ClustImpute
 
 after_success:
   - Rscript -e 'covr::codecov()'
