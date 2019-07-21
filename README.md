@@ -1,6 +1,14 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+<!-- badges: start -->
+
+[![Travis build
+status](https://travis-ci.org/o1iv3r/FeatureImpCluster.svg?branch=master)](https://travis-ci.org/o1iv3r/FeatureImpCluster)
+[![Codecov test
+coverage](https://codecov.io/gh/o1iv3r/FeatureImpCluster/branch/master/graph/badge.svg)](https://codecov.io/gh/o1iv3r/FeatureImpCluster?branch=master)
+<!-- badges: end -->
+
 # Feature importance in k-means clustering
 
 We present a novel approach for measuring feature importance in k-means
@@ -269,20 +277,6 @@ details)
 
 ``` r
 FeatureImpCluster(clusterObj, data, predFUN = custom_prediction_function_for_clusterObj)
-#> Warning in mean.default(X[[i]], ...): argument is not numeric or logical:
-#> returning NA
-#> $misClassRate
-#> Empty data.table (0 rows) of 1 col: 
-#> 
-#> $featureImp
-#> named numeric(0)
-#> 
-#> attr(,"class")
-#> [1] "featImpCluster"
-#> attr(,"subset")
-#> [1] 1
-#> attr(,"iterations")
-#> [1] 10
 ```
 
 ## Further options
