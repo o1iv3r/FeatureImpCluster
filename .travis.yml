@@ -8,7 +8,9 @@ before_install:
   - sudo apt-get install libgsl0-dev libgsl0ldbl
 
 r:
+  - oldrel
   - release
+  - devel
 
 r_github_packages:
   - r-lib/covr
