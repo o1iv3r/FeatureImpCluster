@@ -66,7 +66,7 @@ FeatureImp_res <- FeatureImpCluster(res,as.data.table(dat$data))
 plot(FeatureImp_res)
 ```
 
-Indeed, y and x are most relevant. But also V2 has some impact on the cluster assignment. By looking at the cluster centers we see that, in particular, cluster 2 and 3 have a different center in the V2 dimension than the other clusters.
+Indeed, y and x are most relevant. But also V3 has some impact on the cluster assignment. By looking at the cluster centers we see that, in particular, cluster 1 and 4 have a different center in the V3 dimension than the other clusters.
 
 ```{r}
 barplot(res)
