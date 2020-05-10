@@ -4,17 +4,18 @@
 \alias{plot.featImpCluster}
 \title{Feature importance box plot}
 \usage{
-\method{plot}{featImpCluster}(featImpClusterObj, dat = NULL,
-  color = "none", showPoints = FALSE)
+\method{plot}{featImpCluster}(x, dat = NULL, color = "none", showPoints = FALSE, ...)
 }
 \arguments{
-\item{featImpClusterObj}{an object returned from FeatureImpCluster}
+\item{x}{an object returned from FeatureImpCluster}
 
 \item{dat}{same data as used for the computation of the feature importance (only relevant for colored plots)}
 
 \item{color}{If set to "type", the plot will show different variable types with a different color.}
 
 \item{showPoints}{Show points (default is False)}
+
+\item{...}{arguments to be passed to base plot method}
 }
 \description{
 Feature importance box plot

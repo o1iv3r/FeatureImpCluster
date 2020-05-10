@@ -4,8 +4,14 @@
 \alias{FeatureImpCluster}
 \title{Feature importance for k-means clustering}
 \usage{
-FeatureImpCluster(clusterObj, data, basePred = NULL, predFUN = NULL,
-  sub = 1, biter = 10)
+FeatureImpCluster(
+  clusterObj,
+  data,
+  basePred = NULL,
+  predFUN = NULL,
+  sub = 1,
+  biter = 10
+)
 }
 \arguments{
 \item{clusterObj}{a "typical" cluster object. The only requirement is that there must be a prediction function which maps the data

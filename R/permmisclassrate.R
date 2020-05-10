@@ -27,6 +27,8 @@
 #' @export
 PermMisClassRate <- function(clusterObj,data,varName,basePred=NULL,predFUN=NULL,sub=1,biter=5,seed=123) {
 
+  base_pred = new_pred = NULL # due to NSE notes in R CMD check, cf. https://cran.r-project.org/web/packages/data.table/vignettes/datatable-importing.html
+
   # Define prediction function here
   if (inherits(clusterObj,"kcca")) {
     # prediction function for flexclust
@@ -34,10 +36,11 @@ PermMisClassRate <- function(clusterObj,data,varName,basePred=NULL,predFUN=NULL,
   } else if (inherits(clusterObj,"kproto")) {
     # prediction function for clustMixType
     predFUN <- function(obj,newdata) {
-      predict(obj,newdata)$`cluster`
+      stats::predict(obj,newdata)$`cluster`
     }
   } else if (inherits(clusterObj,"kmeans_ClustImpute")) {
-    predFUN <- ClustImpute:::predict.kmeans_ClustImpute
+    # predFUN <- ClustImpute:::predict.kmeans_ClustImpute
+    predFUN <- stats::predict
   } else attempt::stop_if(is.null(predFUN),"Provide prediction function")
 
   n <- nrow(data) # number of rows of data

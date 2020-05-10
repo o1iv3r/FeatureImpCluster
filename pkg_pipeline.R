@@ -47,6 +47,10 @@ use_coverage() # Add-in test coverage
 
 use_build_ignore(c("pkg_pipeline.R"))
 
+#### Manually to add to NAMESPACE ####
+
+import(data.table)
+
 #### Deployment ####
 
 ## Document and check package

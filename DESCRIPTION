@@ -1,6 +1,6 @@
 Package: FeatureImpCluster
 Title: Feature importance for partitional clustering
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: 
     person(given = "Oliver",
            family = "Pfaffel",
@@ -22,6 +22,6 @@ Suggests:
 Imports: 
     ggplot2
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Depends: 
     data.table

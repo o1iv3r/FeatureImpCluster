@@ -13,10 +13,10 @@
 #' @export
 create_random_data = function(n=1e4,nr_other_vars=4) {
   n <- round(n/4)*4
-  mat <- matrix(rnorm(nr_other_vars*n),n,nr_other_vars)
+  mat <- matrix(stats::rnorm(nr_other_vars*n),n,nr_other_vars)
   me<-2.5 # mean
-  x <- c(rnorm(n/2,me,1),rnorm(n/2,-me,1))
-  y <- c(rnorm(n/4,me,1),rnorm(n/4,-me,1),rnorm(n/4,me,1),rnorm(n/4,-me,1))
+  x <- c(stats::rnorm(n/2,me,1),stats::rnorm(n/2,-me,1))
+  y <- c(stats::rnorm(n/4,me,1),stats::rnorm(n/4,-me,1),stats::rnorm(n/4,me,1),stats::rnorm(n/4,-me,1))
   data <- cbind(mat,x,y)
   data<- as.data.frame(scale(data))
   data.table::setDT(data)

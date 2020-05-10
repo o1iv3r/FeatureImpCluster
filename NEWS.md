@@ -1,3 +1,7 @@
+# FeatureImpCluster 0.1.2
+
+* Making FeatureImpCluster ready for CRAN (fixing warnings and notes)
+
 # FeatureImpCluster 0.1.1
 
 # FeatureImpCluster 0.1.0

@@ -53,16 +53,20 @@ FeatureImpCluster <- function(clusterObj,data,basePred=NULL,predFUN=NULL,sub=1,b
 
 #' Feature importance box plot
 #'
-#' @param featImpClusterObj an object returned from FeatureImpCluster
+#' @param x an object returned from FeatureImpCluster
 #' @param dat same data as used for the computation of the feature importance (only relevant for colored plots)
 #' @param color If set to "type", the plot will show different variable types with a different color.
 #' @param showPoints Show points (default is False)
+#' @param ... arguments to be passed to base plot method
 #'
 #' @rdname plot
 #' @export
-plot.featImpCluster <- function(featImpClusterObj,dat=NULL,color="none",showPoints=FALSE) {
+plot.featImpCluster <- function(x,dat=NULL,color="none",showPoints=FALSE,...) {
   # Create boxplot
   # color="type" requires data
+  featImpClusterObj = x
+
+  variable = value = NULL
 
   biter <- attr(featImpClusterObj,"iterations") # recover number of iterations
   data2plot <- melt(featImpClusterObj$misClassRate,

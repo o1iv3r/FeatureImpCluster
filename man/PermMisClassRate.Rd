@@ -4,8 +4,16 @@
 \alias{PermMisClassRate}
 \title{Permutation misclassification rate for single variable}
 \usage{
-PermMisClassRate(clusterObj, data, varName, basePred = NULL,
-  predFUN = NULL, sub = 1, biter = 5, seed = 123)
+PermMisClassRate(
+  clusterObj,
+  data,
+  varName,
+  basePred = NULL,
+  predFUN = NULL,
+  sub = 1,
+  biter = 5,
+  seed = 123
+)
 }
 \arguments{
 \item{clusterObj}{a "typical" cluster object. The only requirement is that there must be a prediction function which maps the data
