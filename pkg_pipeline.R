@@ -1,6 +1,5 @@
 library(usethis) # https://usethis.r-lib.org/reference/index.html
 
-
 #### Infrastructure ####
 
 use_gpl3_license(name = "Oliver Pfaffel") # required to share improvements
@@ -53,25 +52,15 @@ import(data.table)
 
 #### Deployment ####
 
+## Increment version
+use_version() #  increments the "Version" field in DESCRIPTION, adds a new heading to NEWS.md (if it exists), and commits those changes (if package uses Git).
+
 ## Document and check package
 # restart R session first
 devtools::document()
 devtools::check(document = FALSE)
 
-## Commit changes
-# terminal: git commit -m "Commit message"
-# or commit button in Rstudio
-
-## Increment version
-use_version() #  increments the "Version" field in DESCRIPTION, adds a new heading to NEWS.md (if it exists), and commits those changes (if package uses Git).
-
-## Push to github
-# terminal: git push -u origin master
-# or push button in Rstudio
-
-## Build
-# Install and Restart
-# More Build Source
+devtools::build()
 
 ## Release package to CRAN
 # devtools::release()

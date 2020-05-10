@@ -2,7 +2,7 @@
 
 language: R
 cache: packages
-warnings_are_errors: false
+# warnings_are_errors: false
 
 before_install:
   - sudo apt-get install libgsl0-dev libgsl0ldbl

@@ -54,20 +54,20 @@ library(FeatureImpCluster)
 set.seed(7)
 dat <- create_random_data(n=4000,nr_other_vars = 4)
 summary(dat$data)
-#>        V1                  V2                  V3           
-#>  Min.   :-3.531648   Min.   :-3.578032   Min.   :-3.924400  
-#>  1st Qu.:-0.670694   1st Qu.:-0.676281   1st Qu.:-0.662992  
-#>  Median :-0.001917   Median :-0.001944   Median :-0.002742  
-#>  Mean   : 0.000000   Mean   : 0.000000   Mean   : 0.000000  
-#>  3rd Qu.: 0.654912   3rd Qu.: 0.658228   3rd Qu.: 0.678405  
-#>  Max.   : 3.501554   Max.   : 3.717284   Max.   : 3.065434  
-#>        V4                 x                   y           
-#>  Min.   :-3.91009   Min.   :-2.255326   Min.   :-2.04657  
-#>  1st Qu.:-0.67427   1st Qu.:-0.934193   1st Qu.:-0.92633  
-#>  Median : 0.01396   Median :-0.004383   Median : 0.04418  
-#>  Mean   : 0.00000   Mean   : 0.000000   Mean   : 0.00000  
-#>  3rd Qu.: 0.67657   3rd Qu.: 0.927500   3rd Qu.: 0.92785  
-#>  Max.   : 3.58167   Max.   : 2.095888   Max.   : 2.18437
+#>        V1                  V2                  V3                  V4          
+#>  Min.   :-3.531648   Min.   :-3.578032   Min.   :-3.924400   Min.   :-3.91009  
+#>  1st Qu.:-0.670694   1st Qu.:-0.676281   1st Qu.:-0.662992   1st Qu.:-0.67427  
+#>  Median :-0.001917   Median :-0.001944   Median :-0.002742   Median : 0.01396  
+#>  Mean   : 0.000000   Mean   : 0.000000   Mean   : 0.000000   Mean   : 0.00000  
+#>  3rd Qu.: 0.654912   3rd Qu.: 0.658228   3rd Qu.: 0.678405   3rd Qu.: 0.67657  
+#>  Max.   : 3.501554   Max.   : 3.717284   Max.   : 3.065434   Max.   : 3.58167  
+#>        x                   y           
+#>  Min.   :-2.255326   Min.   :-2.04657  
+#>  1st Qu.:-0.934193   1st Qu.:-0.92633  
+#>  Median :-0.004383   Median : 0.04418  
+#>  Mean   : 0.000000   Mean   : 0.00000  
+#>  3rd Qu.: 0.927500   3rd Qu.: 0.92785  
+#>  Max.   : 2.095888   Max.   : 2.18437
 ```
 
 ``` r
@@ -104,9 +104,9 @@ plot(FeatureImp_res)
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
-Indeed, y and x are most relevant. But also V2 has some impact on the
+Indeed, y and x are most relevant. But also V3 has some impact on the
 cluster assignment. By looking at the cluster centers we see that, in
-particular, cluster 2 and 3 have a different center in the V2 dimension
+particular, cluster 1 and 4 have a different center in the V3 dimension
 than the other
 clusters.
 
