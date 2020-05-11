@@ -21,7 +21,6 @@ Suggests:
     covr
 Imports: 
     ggplot2
-VignetteBuilder: knitr
 RoxygenNote: 7.1.0
 Depends: 
     data.table
