@@ -41,7 +41,7 @@ You can install the package as follows:
 devtools::install_github("o1iv3r/FeatureImpCluster")
 ```
 
-## Useage with flexclust
+## Usage with flexclust
 
 We’ll create some random data to illustrate the usage of
 FeatureImpCluster. It provides 4 clusters in a 2 dimensional subspace of
@@ -158,7 +158,7 @@ names(savedImp) <- sort(names(FeatureImp_res$featureImp))
 
 Now it becomes quite obvious that x and y are the only relevant
 features, and we could do our clustering only based on these features.
-This is importantant in practice since cluster centroids with a lower
+This is important in practice since cluster centroids with a lower
 number of features are easier to interpret, and we can save time / money
 collecting and pre-processing unnecessary features.
 
@@ -173,7 +173,7 @@ boxplot(savedImp)
 Another application arises for data sets with numerical and categorical
 features. Since one cannot simply calculate an Euclidean distance for
 categorical variables, one often uses an L0-norm (1 for equality, 0
-else) for the latter and combines both metrices linearly with an
+else) for the latter and combines both metrics linearly with an
 appropriate weight (often this choice is referred to as Gower’s distance
 in the literature). In the clustMixType package the parameter **lambda**
 defines the trade off between Euclidean distance of numeric variables
@@ -229,7 +229,7 @@ plot(FeatureImp_res,ds,color="type")
 
 All in all the numeric variables are more important for the
 partitioning. If, for some reason, we wanted partitions that emphasize
-differences between the cateogrical features, we’d have to increase
+differences between the categorical features, we’d have to increase
 **lambda**. The feature importance directly shows us the effect of this
 action: the two categorical features now have an equally high importance
 only somewhat smaller than x. As above, repeated partitioning could be
@@ -248,7 +248,7 @@ plot(FeatureImpCluster(res2,ds),ds,color="type")
 <img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />
 
 Of course, further criteria should be used to determine an “optimal”
-**lamda** for the use case at hand - but certainly featuer importance
+**lambda** for the use case at hand - but certainly feature importance
 provides helpful guidance for data of mixed types.
 
 ## Other methods: kmeans(), pam() and ClustImpute()
@@ -285,9 +285,9 @@ There are further options not being explained in the examples above:
 
   - For initialization, the prediction methodhas to be computed on the
     entire data set. This can be of high computational cost for large
-    data sets. Alterntively one can provide the current partitioning via
-    basePred.
-  - To further spead up a computation on large data sets, the
+    data sets. Alternatively one can provide the current partitioning
+    via basePred.
+  - To further speed up a computation on large data sets, the
     permutation importance can be computed on random subsets of the
     data. This can be controlled via the **sub** parameter
   - The number of iterations (default is 10) can be set via **biter**

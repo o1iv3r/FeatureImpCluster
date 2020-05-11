@@ -27,6 +27,8 @@
 #' f <- FeatureImpCluster(res,dat)
 #' plot(f)
 #'
+#' @import data.table
+#'
 #' @export
 FeatureImpCluster <- function(clusterObj,data,basePred=NULL,predFUN=NULL,sub=1,biter=10) {
 

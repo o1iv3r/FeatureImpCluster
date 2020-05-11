@@ -46,31 +46,36 @@ use_coverage() # Add-in test coverage
 
 use_build_ignore(c("pkg_pipeline.R"))
 
-#### Manually to add to NAMESPACE ####
+#### Before ANY changes are made ####
 
-import(data.table)
-
-#### Deployment ####
+# new branch
 
 ## Increment version
-use_version() #  increments the "Version" field in DESCRIPTION, adds a new heading to NEWS.md (if it exists), and commits those changes (if package uses Git).
+usethis::use_version() #  increments the "Version" field in DESCRIPTION, adds a new heading to NEWS.md (if it exists), and commits those changes (if package uses Git).
+
+#### Manual deployment ####
 
 ## Document and check package
 # restart R session first
+devtools::test()
+devtools::spell_check()
 devtools::document()
 devtools::check(document = FALSE)
 
+# Further checks on different machines
+devtools::check_rhub()
+
+# finally, either release
+devtools::release()
+# or build and upload manually
 devtools::build()
 
-## Release package to CRAN
-# devtools::release()
-# devtools::submit_cran()
-
 #### CI ####
+
+# optional: add dev branch to travis.yml
 
 use_travis()
 use_build_ignore("travis.yml")
 
 use_coverage()
 use_build_ignore("codecov.yml")
-

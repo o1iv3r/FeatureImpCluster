@@ -1,6 +1,6 @@
 #' Create random data set with 4 clusters
 #'
-#' Create random data set with 4 clusters in a 2 dimensional subspace of a nr_othter_vars+2 dimensional space
+#' Create random data set with 4 clusters in a 2 dimensional subspace of a nr_other_vars+2 dimensional space
 #'
 #' @param n number of points
 #' @param nr_other_vars number of other variables / "noise" dimensions

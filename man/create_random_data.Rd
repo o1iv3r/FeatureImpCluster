@@ -15,7 +15,7 @@ create_random_data(n = 10000, nr_other_vars = 4)
 list containing the random data.table and a vector with the true underlying cluster assignments
 }
 \description{
-Create random data set with 4 clusters in a 2 dimensional subspace of a nr_othter_vars+2 dimensional space
+Create random data set with 4 clusters in a 2 dimensional subspace of a nr_other_vars+2 dimensional space
 }
 \examples{
 create_random_data(n=1e3)

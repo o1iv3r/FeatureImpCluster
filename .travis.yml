@@ -5,7 +5,7 @@ cache: packages
 # warnings_are_errors: false
 
 before_install:
-  - sudo apt-get install libgsl0-dev libgsl0ldbl
+  - sudo apt-get install libgsl23 libgslcblas0 libgsl0-dev
 
 r:
   - oldrel
@@ -15,7 +15,7 @@ r:
 r_github_packages:
   - r-lib/covr
   - cran/gsl
-  - o1iv3r/ClustImpute
+#  - o1iv3r/ClustImpute
 
 after_success:
   - Rscript -e 'covr::codecov()'
