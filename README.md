@@ -98,6 +98,7 @@ library(flexclust)
 #> Loading required package: stats4
 set.seed(10)
 res <- kcca(dat$data,k=4)
+set.seed(10)
 FeatureImp_res <- FeatureImpCluster(res,as.data.table(dat$data))
 plot(FeatureImp_res)
 ```
@@ -136,12 +137,12 @@ permutation, we can iterate over the different cluster runs (or both).
 This way there is a good chance that any spurious importance is
 identified as an outlier.
 
-For our example we repeat the clustering + feature importance
-calculation 5 times:
+For our example we repeat the clustering and feature importance
+calculation 20 times:
 
 ``` r
 set.seed(12)
-nr_seeds <- 5
+nr_seeds <- 20
 seeds_vec <- sample(1:1000,nr_seeds)
 
 savedImp <- data.frame(matrix(0,nr_seeds,dim(dat$data)[2]))
@@ -149,6 +150,7 @@ count <- 1
 for (s in seeds_vec) {
   set.seed(s)
   res <- kcca(dat$data,k=4)
+  set.seed(s)
   FeatureImp_res <- FeatureImpCluster(res,as.data.table(dat$data),sub = 1,biter = 1)
   savedImp[count,] <- FeatureImp_res$featureImp[sort(names(FeatureImp_res$featureImp))]
   count <- count + 1
@@ -205,6 +207,7 @@ First we’ll apply the clustering with an automatic estimation of
 
 ``` r
 library(clustMixType)
+set.seed(123)
 res <- kproto(x=ds,k=4)
 #> # NAs in variables:
 #>   V1   V2   V3   V4    x    y cat1 cat2 
@@ -221,6 +224,7 @@ type. While cat2 correctly has some importance, the one of cat1 is
 almost zero.
 
 ``` r
+set.seed(123)
 FeatureImp_res <- FeatureImpCluster(res,ds)
 plot(FeatureImp_res,ds,color="type")
 ```
@@ -232,24 +236,27 @@ partitioning. If, for some reason, we wanted partitions that emphasize
 differences between the categorical features, we’d have to increase
 **lambda**. The feature importance directly shows us the effect of this
 action: the two categorical features now have an equally high importance
-only somewhat smaller than x. As above, repeated partitioning could be
-used to compute a more reasonable importance for the data set and not
-only an importance for a specific partition.
+a bit smaller than x but much higher than y.
 
 ``` r
+set.seed(123)
 res2 <- kproto(x=ds,k=4,lambda=3)
 #> # NAs in variables:
 #>   V1   V2   V3   V4    x    y cat1 cat2 
 #>    0    0    0    0    0    0    0    0 
 #> 0 observation(s) with NAs.
+set.seed(123)
 plot(FeatureImpCluster(res2,ds),ds,color="type")
 ```
 
 <img src="man/figures/README-unnamed-chunk-11-1.png" width="100%" />
 
-Of course, further criteria should be used to determine an “optimal”
-**lambda** for the use case at hand - but certainly feature importance
-provides helpful guidance for data of mixed types.
+As above, repeated partitioning could be used to compute a more
+reasonable importance for the data set and not only an importance for a
+specific partition. Of course, further criteria should be used to
+determine an “optimal” **lambda** for the use case at hand - but
+certainly feature importance provides helpful guidance for data of mixed
+types.
 
 ## Other methods: kmeans(), pam() and ClustImpute()
 
