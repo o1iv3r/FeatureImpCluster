@@ -7,6 +7,9 @@
 status](https://travis-ci.org/o1iv3r/FeatureImpCluster.svg?branch=master)](https://travis-ci.org/o1iv3r/FeatureImpCluster)
 [![Codecov test
 coverage](https://codecov.io/gh/o1iv3r/FeatureImpCluster/branch/master/graph/badge.svg)](https://codecov.io/gh/o1iv3r/FeatureImpCluster?branch=master)
+![CRAN\_Version](https://www.r-pkg.org/badges/version-last-release/FeatureImpCluster)
+![CRAN\_Downloads](https://cranlogs.r-pkg.org/badges/grand-total/FeatureImpCluster)
+![CRAN\_Downloads\_LastWeek](https://cranlogs.r-pkg.org/badges/last-week/FeatureImpCluster)
 <!-- badges: end -->
 
 # Feature importance in k-means clustering
