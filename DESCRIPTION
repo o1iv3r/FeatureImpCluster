@@ -1,6 +1,6 @@
 Package: FeatureImpCluster
 Title: Feature Importance for Partitional Clustering
-Version: 0.1.2
+Version: 0.1.3
 Authors@R: 
     person(given = "Oliver",
            family = "Pfaffel",
@@ -9,7 +9,6 @@ Authors@R:
 Description: Implements a novel approach for measuring feature importance in k-means clustering. Importance of a feature is measured by the misclassification rate relative to the baseline cluster assignment due to a random permutation of feature values.
 License: GPL-3
 Encoding: UTF-8
-LazyData: true
 Suggests: 
     flexclust,
     clustMixType,
