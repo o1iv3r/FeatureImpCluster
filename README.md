@@ -4,7 +4,7 @@
 <!-- badges: start -->
 
 [![Travis build
-status](https://travis-ci.org/o1iv3r/FeatureImpCluster.svg?branch=master)](https://travis-ci.org/o1iv3r/FeatureImpCluster)
+status](https://travis-ci.com/o1iv3r/FeatureImpCluster.svg?branch=master)](https://travis-ci.org/o1iv3r/FeatureImpCluster)
 [![Codecov test
 coverage](https://codecov.io/gh/o1iv3r/FeatureImpCluster/branch/master/graph/badge.svg)](https://codecov.io/gh/o1iv3r/FeatureImpCluster?branch=master)
 ![CRAN\_Version](https://www.r-pkg.org/badges/version-last-release/FeatureImpCluster)
