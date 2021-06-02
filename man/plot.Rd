@@ -17,6 +17,9 @@
 
 \item{...}{arguments to be passed to base plot method}
 }
+\value{
+Returns a ggplot2 object
+}
 \description{
 Feature importance box plot
 }

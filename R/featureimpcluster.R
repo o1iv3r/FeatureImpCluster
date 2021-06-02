@@ -62,6 +62,8 @@ FeatureImpCluster <- function(clusterObj,data,basePred=NULL,predFUN=NULL,sub=1,b
 #' @param ... arguments to be passed to base plot method
 #'
 #' @rdname plot
+#' @return Returns a ggplot2 object
+#'
 #' @export
 plot.featImpCluster <- function(x,dat=NULL,color="none",showPoints=FALSE,...) {
   # Create boxplot
