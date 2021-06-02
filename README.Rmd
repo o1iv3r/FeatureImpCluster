@@ -5,7 +5,7 @@ output: github_document
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.com/o1iv3r/FeatureImpCluster.svg?branch=master)](https://travis-ci.org/o1iv3r/FeatureImpCluster)
+[![Travis build status](https://travis-ci.com/o1iv3r/FeatureImpCluster.svg?branch=master)](https://travis-ci.com/o1iv3r/FeatureImpCluster)
 [![Codecov test coverage](https://codecov.io/gh/o1iv3r/FeatureImpCluster/branch/master/graph/badge.svg)](https://codecov.io/gh/o1iv3r/FeatureImpCluster?branch=master)
 ![CRAN_Version](https://www.r-pkg.org/badges/version-last-release/FeatureImpCluster)
 ![CRAN_Downloads](https://cranlogs.r-pkg.org/badges/grand-total/FeatureImpCluster)
