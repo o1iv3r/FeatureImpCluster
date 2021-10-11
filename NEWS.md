@@ -1,3 +1,7 @@
+# FeatureImpCluster 0.1.5
+
+* Fixed issue that permitted to use packages other than the supported ones. Added a test to prevent this in the future
+
 # FeatureImpCluster 0.1.4
 
 * reference describing the methodology added 

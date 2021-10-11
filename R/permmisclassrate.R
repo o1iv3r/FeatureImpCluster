@@ -41,7 +41,9 @@ PermMisClassRate <- function(clusterObj,data,varName,basePred=NULL,predFUN=NULL,
   } else if (inherits(clusterObj,"kmeans_ClustImpute")) {
     # predFUN <- ClustImpute:::predict.kmeans_ClustImpute
     predFUN <- stats::predict
-  } else attempt::stop_if(is.null(predFUN),"Provide prediction function")
+  } else if (is.null(predFUN)) {
+    attempt::stop_if(is.null(predFUN),msg="Provide prediction function")
+  }
 
   n <- nrow(data) # number of rows of data
 

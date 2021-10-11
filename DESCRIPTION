@@ -1,6 +1,6 @@
 Package: FeatureImpCluster
 Title: Feature Importance for Partitional Clustering
-Version: 0.1.4
+Version: 0.1.5
 Authors@R: 
     person(given = "Oliver",
            family = "Pfaffel",
@@ -20,6 +20,6 @@ Suggests:
     covr
 Imports: 
     ggplot2
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Depends: 
     data.table
