@@ -31,6 +31,10 @@ test_that("Test lower cap for sub", {
 res_clustimpute <- ClustImpute::ClustImpute(dat,4)
 p_clustimpute <- PermMisClassRate(res_clustimpute,dat,"x",biter=biter)
 
+## Test unsupported packages
+res_cclust <- flexclust::cclust(dat,3)
+p_cclust <- PermMisClassRate(res_cclust,dat,"x",predFUN=flexclust::predict)
+
 # include categorical variables
 set.seed(123)
 dat_cat <- copy(dat)
