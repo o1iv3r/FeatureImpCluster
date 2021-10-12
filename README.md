@@ -4,9 +4,9 @@
 <!-- badges: start -->
 
 [![Travis build
-status](https://travis-ci.com/o1iv3r/FeatureImpCluster.svg?branch=master)](https://travis-ci.org/o1iv3r/FeatureImpCluster)
+status](https://travis-ci.com/o1iv3r/FeatureImpCluster.svg?branch=master)](https://travis-ci.com/o1iv3r/FeatureImpCluster)
 [![Codecov test
-coverage](https://codecov.io/gh/o1iv3r/FeatureImpCluster/branch/master/graph/badge.svg)](https://codecov.io/gh/o1iv3r/FeatureImpCluster?branch=master)
+coverage](https://codecov.io/gh/o1iv3r/FeatureImpCluster/branch/master/graph/badge.svg)](https://app.codecov.io/gh/o1iv3r/FeatureImpCluster?branch=master)
 ![CRAN\_Version](https://www.r-pkg.org/badges/version-last-release/FeatureImpCluster)
 ![CRAN\_Downloads](https://cranlogs.r-pkg.org/badges/grand-total/FeatureImpCluster)
 ![CRAN\_Downloads\_LastWeek](https://cranlogs.r-pkg.org/badges/last-week/FeatureImpCluster)
@@ -95,9 +95,11 @@ permutation of the feature.
 ``` r
 library(FeatureImpCluster)
 library(flexclust)
+#> Warning: package 'flexclust' was built under R version 4.0.5
 #> Loading required package: grid
 #> Loading required package: lattice
 #> Loading required package: modeltools
+#> Warning: package 'modeltools' was built under R version 4.0.3
 #> Loading required package: stats4
 set.seed(10)
 res <- kcca(dat$data,k=4)
@@ -111,8 +113,7 @@ plot(FeatureImp_res)
 Indeed, y and x are most relevant. But also V3 has some impact on the
 cluster assignment. By looking at the cluster centers we see that, in
 particular, cluster 1 and 4 have a different center in the V3 dimension
-than the other
-clusters.
+than the other clusters.
 
 ``` r
 barplot(res)
@@ -210,6 +211,7 @@ First we’ll apply the clustering with an automatic estimation of
 
 ``` r
 library(clustMixType)
+#> Warning: package 'clustMixType' was built under R version 4.0.5
 set.seed(123)
 res <- kproto(x=ds,k=4)
 #> # NAs in variables:
@@ -282,8 +284,7 @@ FeatureImpCluster(res_clustimpute,as.data.table(dat$data))
 ```
 
 For other methods, a custom prediction function can be provided
-(cf. documentation for
-details)
+(cf. documentation for details)
 
 ``` r
 FeatureImpCluster(clusterObj, data, predFUN = custom_prediction_function_for_clusterObj)
