@@ -4,7 +4,7 @@
 <!-- badges: start -->
 
 [![Travis build
-status](https://travis-ci.com/o1iv3r/FeatureImpCluster.svg?branch=master)](https://travis-ci.com/o1iv3r/FeatureImpCluster)
+status](https://www.travis-ci.com/o1iv3r/FeatureImpCluster.svg?branch=master)](https://www.travis-ci.com/o1iv3r/FeatureImpCluster)
 [![Codecov test
 coverage](https://codecov.io/gh/o1iv3r/FeatureImpCluster/branch/master/graph/badge.svg)](https://app.codecov.io/gh/o1iv3r/FeatureImpCluster?branch=master)
 ![CRAN\_Version](https://www.r-pkg.org/badges/version-last-release/FeatureImpCluster)
@@ -75,6 +75,10 @@ summary(dat$data)
 
 ``` r
 library(ggplot2)
+#> Registered S3 methods overwritten by 'tibble':
+#>   method     from  
+#>   format.tbl pillar
+#>   print.tbl  pillar
 true_clusters <- factor(dat$true_clusters)
 ggplot(dat$data,aes(x=x,y=y,color=true_clusters)) + geom_point()
 ```
@@ -95,11 +99,9 @@ permutation of the feature.
 ``` r
 library(FeatureImpCluster)
 library(flexclust)
-#> Warning: package 'flexclust' was built under R version 4.0.5
 #> Loading required package: grid
 #> Loading required package: lattice
 #> Loading required package: modeltools
-#> Warning: package 'modeltools' was built under R version 4.0.3
 #> Loading required package: stats4
 set.seed(10)
 res <- kcca(dat$data,k=4)
@@ -211,7 +213,6 @@ First we’ll apply the clustering with an automatic estimation of
 
 ``` r
 library(clustMixType)
-#> Warning: package 'clustMixType' was built under R version 4.0.5
 set.seed(123)
 res <- kproto(x=ds,k=4)
 #> # NAs in variables:
